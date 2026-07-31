@@ -25,9 +25,9 @@ do
   SURVIVOR merge output/tmp_list.txt 5 1 1 1 0 500 output/${col1}.tmp_merged.vcf 2>&1 | tee -a "$logfile"
 
   bcftools query -i 'INFO/SUPP_VEC="01"' -f '%ID\n' output/${col1}.tmp_merged.vcf > output/${col1}.somaticIDs.txt 2>&1 | tee -a "$logfile"
-  bcftools view -i "ID=@output/${col1}.somaticIDs.txt" "${sv_dir}/${col1}/results/${col1}.wf_sv.vcf" -O z -o "output/${col1}.sniffles_sv_bamPass.PoNfiltered.vcf.gz" 2>&1 | tee -a "$logfile"
-  tabix -p vcf "output/${col1}.sniffles_sv_bamPass.PoNfiltered.vcf.gz" 2>&1 | tee -a "$logfile"
-  somatic_variants=$(zgrep -v '^#' "output/${col1}.sniffles_sv_bamPass.PoNfiltered.vcf.gz" | wc -l)
+  bcftools view -i "ID=@output/${col1}.somaticIDs.txt" "${sv_dir}/${col1}/results/${col1}.wf_sv.vcf" -O z -o "output/${col1}.sniffles_sv.PoNfiltered.vcf.gz" 2>&1 | tee -a "$logfile"
+  tabix -p vcf "output/${col1}.sniffles_sv.PoNfiltered.vcf.gz" 2>&1 | tee -a "$logfile"
+  somatic_variants=$(zgrep -v '^#' "output/${col1}.sniffles_sv.PoNfiltered.vcf.gz" | wc -l)
   filtered_out=$((total_variants - somatic_variants))
   echo "Number of SV's filtered out = $filtered_out" | tee -a "$logfile"
 
