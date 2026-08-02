@@ -9,7 +9,7 @@ gene <- CGC %Q%  (Gene_Symbol == 'CCND1')
 window = gene + 10e5
 
 ## methylation data
-HCC1954_bedmethyl_ungrouped <- readRDS('')
+HCC1954_bedmethyl_ungrouped <- readRDS('source_data/HCC1954.ungrouped.bedmethyl.rds')
 # filter for meth. (CpG)
 all_cpg <- dt2gr(HCC1954_bedmethyl_ungrouped[modified_base_code == 'm' & Nvalid_cov > 5])
 all_cpg <- gr.chr(all_cpg)
@@ -21,7 +21,7 @@ cnvkit_cov_gr <- dt2gr(cnvkit_cov)
 cnvkit_cov_gr <- cnvkit_cov_gr[seqnames(cnvkit_cov_gr)=="chr11"]
 
 ## H3K27ac ChIP
-bw_FE <- import('')
+bw_FE <- import('source_data/HCC1954_H3K27ac_ChIP_FE.bw')
 chip_FE_gt <- gTrack(data = bw_FE, y.field = 'score', name = 'FE_score',bars = T,yaxis.cex=0.7,y1=8)
 rm(bw_FE)
 H3K27ac_peaks <- fread('source_data/HCC1954_peaks.narrowPeak')
