@@ -20,8 +20,8 @@ walks_L <- gTrack(walks_consAmp_NSCLC,y.field="AmpFraction_smoothed",col="royalb
 sign_BvL_gt <- readRDS(paste0(xG,'_BRCAvsNSCLC_fisher_80consAmp.rds'))
 
 # Fisher left vs. right
-b_LvR <- readRDS(paste0(xG,'_BRCA_LvR_fisher_80consAmp.rds'))
-l_LvR <- readRDS(paste0(xG,'_NSCLC_LvR_fisher_80consAmp.rds'))
+sign_B_LvR_gt <- readRDS(paste0(xG,'_BRCA_LvR_fisher_80consAmp.rds'))
+sign_L_LvR_gt <- readRDS(paste0(xG,'_NSCLC_LvR_fisher_80consAmp.rds'))
 
 plot(c(gt_ge,
        sign_L_LvR_gt,
