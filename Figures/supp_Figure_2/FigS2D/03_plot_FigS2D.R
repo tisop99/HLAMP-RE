@@ -22,9 +22,9 @@ sign_BvL_gt <- readRDS(paste0(xG,'_BRCAvsNSCLC_fisher_80consAmp.rds'))
 # Fisher left vs. right
 b_LvR <- readRDS(paste0(xG,'_BRCA_LvR_fisher_80consAmp.rds'))
 l_LvR <- readRDS(paste0(xG,'_NSCLC_LvR_fisher_80consAmp.rds'))
-sign_B_LvR <-  b_LvR[b_LvR$fish_LR_pVal<=0.05]
+sign_B_LvR <-  b_LvR[b_LvR$fish_LR_pVal<0.05]
 sign_B_LvR_gt <- gTrack(sign_B_LvR,col="brown3", height=5)
-sign_L_LvR <- l_LvR[l_LvR$fish_LR_pVal<=0.05]
+sign_L_LvR <- l_LvR[l_LvR$fish_LR_pVal<0.05]
 sign_L_LvR_gt <- gTrack(sign_L_LvR,col="royalblue3", height=5)
 
 plot(c(gt_ge,
