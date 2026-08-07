@@ -70,6 +70,6 @@ sign_BvL <- target_range[target_range$fisher_p<0.05]
 
 mcols(sign_BvL)$tissue <- ifelse(mcols(sign_BvL)$log2FC > 0, "NSCLC", "BRCA")
 colormap_BvL <- list(tissue=c(NSCLC="royalblue3", BRCA="brown3"))
-sign_BvL_gt <- gTrack(sign_BvL,gr.colorfield = "color",colormaps = colormap_BvL)
+sign_BvL_gt <- gTrack(sign_BvL,gr.colorfield = "color",colormaps = colormap_BvL, height=5)
 
 saveRDS(sign_BvL_gt,paste0(xG,'_BRCAvsNSCLC_fisher_80consAmp.rds'))
