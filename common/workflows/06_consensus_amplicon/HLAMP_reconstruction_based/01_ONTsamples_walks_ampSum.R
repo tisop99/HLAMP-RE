@@ -21,7 +21,7 @@ for (i in 1:nrow(IDs)) {
   walk_gr <- gr.chr(walk_gr)
   strand(walk_gr) <- "*"
 
-  hits <- findOverlaps(target,walk_gr)
+  hits <- findOverlaps(target,walk_gr,type="within")
   if (length(hits)>0 & all(walk_gr[subjectHits(hits)]$cn >= 10)) {
     gr_list <- append(gr_list, list(walk_gr))
   }
