@@ -1,10 +1,5 @@
 library(GenomicRanges)
-library(dplyr)
-library(ggplot2)
-library(scales)
-library(patchwork)
 library(gGnome)
-library(gTrack)
 
 case <- commandArgs(trailingOnly = TRUE)
 xG <- case[1] # CCND1
@@ -30,6 +25,7 @@ gene_end_idx <- max(subjectHits(gene_idx))
 mcols(b_all)$fish_LR_pVal <- NA
 mcols(b_all)$fish_LR_log2FC <- 0
 
+epsi <- 0.0001 # small pseudocount to avoid division by 0 in foldchange
 # fisher test function
 fisher_bin <- function(a,b,c,d) {
   mat <- matrix(c(a,b,c,d), nrow = 2)
