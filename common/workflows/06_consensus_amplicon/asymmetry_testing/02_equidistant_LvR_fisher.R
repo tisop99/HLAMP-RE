@@ -4,10 +4,10 @@ library(gGnome)
 case <- commandArgs(trailingOnly = TRUE)
 xG <- case[1] # CCND1
 
-walks_consAmp_BRCA <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned_interpolated.rds'))
-walks_consAmp_NSCLC <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned_interpolated.rds'))
+walks_consAmp_BRCA <- readRDS(paste0('data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned_interpolated.rds'))
+walks_consAmp_NSCLC <- readRDS(paste0('data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned_interpolated.rds'))
 
-CGC <- readRDS('../../../common/data/refGenome/cgc_T2T_gr_UCSC.rds')
+CGC <- readRDS('../../../../common/data/refGenome/cgc_T2T_gr_UCSC.rds')
 gene <- CGC %Q% (Gene_Symbol == xG)
 target_chr <- as.character(seqnames(gene[1]))
 gene_range <- GRanges(seqnames=target_chr,ranges=IRanges(start=min(start(gene)),end=max(end(gene))))

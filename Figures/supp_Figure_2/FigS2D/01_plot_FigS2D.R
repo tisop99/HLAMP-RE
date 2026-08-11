@@ -17,11 +17,11 @@ walks_B <- gTrack(walks_consAmp_BRCA,y.field="AmpFraction_smoothed",col="brown3"
 walks_L <- gTrack(walks_consAmp_NSCLC,y.field="AmpFraction_smoothed",col="royalblue3",bars=T)
 
 # Fisher BRCA vs. NSCLC
-sign_BvL_gt <- readRDS(paste0(xG,'_BRCAvsNSCLC_fisher_80consAmp.rds'))
+sign_BvL_gt <- readRDS(paste0('source_data/',xG,'_BRCAvsNSCLC_fisher_80consAmp.rds'))
 
 # Fisher left vs. right
-b_LvR <- readRDS(paste0(xG,'_BRCA_LvR_fisher_80consAmp.rds'))
-l_LvR <- readRDS(paste0(xG,'_NSCLC_LvR_fisher_80consAmp.rds'))
+b_LvR <- readRDS(paste0('source_data/',xG,'_BRCA_LvR_fisher_80consAmp.rds'))
+l_LvR <- readRDS(paste0('source_data/',xG,'_NSCLC_LvR_fisher_80consAmp.rds'))
 sign_B_LvR <-  b_LvR[b_LvR$fish_LR_pVal<0.05]
 sign_B_LvR_gt <- gTrack(sign_B_LvR,col="brown3", height=5)
 sign_L_LvR <- l_LvR[l_LvR$fish_LR_pVal<0.05]

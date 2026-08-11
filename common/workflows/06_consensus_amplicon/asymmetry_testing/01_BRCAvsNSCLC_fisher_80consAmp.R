@@ -5,16 +5,16 @@ library(gTrack)
 case <- commandArgs(trailingOnly = TRUE)
 xG <- case[1] # CCND1
 
-walks_consAmp_BRCA <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned_interpolated.rds'))
-walks_consAmp_NSCLC <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned_interpolated.rds'))
+walks_consAmp_BRCA <- readRDS(paste0('data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned_interpolated.rds'))
+walks_consAmp_NSCLC <- readRDS(paste0('data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned_interpolated.rds'))
 total_breast <- max(walks_consAmp_BRCA$mean_support)/max(walks_consAmp_BRCA$AmpFraction)
 total_lung <- max(walks_consAmp_NSCLC$mean_support)/max(walks_consAmp_NSCLC$AmpFraction)
 
-CGC <- readRDS('../../../common/data/refGenome/cgc_T2T_gr_UCSC.rds')
+CGC <- readRDS('../../../../common/data/refGenome/cgc_T2T_gr_UCSC.rds')
 gene <- CGC %Q% (Gene_Symbol == xG)
 target_chr <- as.character(seqnames(gene[1]))
 
-T2T_seqlengths <- fread('../../../common/data/refGenome/T2T_contig_lengths_UCSC.tsv')
+T2T_seqlengths <- fread('../../../../common/data/refGenome/T2T_contig_lengths_UCSC.tsv')
 colnames(T2T_seqlengths) <- c("seqnames","chr_len")
 seqlengths <- setNames(T2T_seqlengths$chr_len,T2T_seqlengths$seqnames)
 bins <- tileGenome(seqlengths, tilewidth=10000, cut.last.tile.in.chrom=T)
