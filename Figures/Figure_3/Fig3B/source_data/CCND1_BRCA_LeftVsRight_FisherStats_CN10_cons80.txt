@@ -1,0 +1,1 @@
+../../../Figure_2/Fig2E/source_data/CCND1_BRCA_LeftVsRight_FisherStats_CN10_cons80.txt
