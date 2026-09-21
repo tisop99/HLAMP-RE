@@ -1,15 +1,18 @@
 library(GenomicRanges)
 library(dplyr)
 library(ggplot2)
-library(scales)
-library(patchwork)
+#library(scales)
+#library(patchwork)
 library(gGnome)
 
+case <- commandArgs(trailingOnly = TRUE)
+xG <- case[1] # CCND1, NSD3, EGFR
+
 # load profiles
-cn_consAmp_BRCA <- readRDS('source_data/cnBased_consensus_ampSum_extendedCohort_NSD3_BRCA_10kb_binned_interpolated.rds')
-cn_consAmp_NSCLC <- readRDS('source_data/cnBased_consensus_ampSum_extendedCohort_NSD3_NSCLC_10kb_binned_interpolated.rds')
-walks_consAmp_BRCA <- readRDS('source_data/HLAMPwalks_consensus_ampSum_NSD3_BRCA_10kb_binned_interpolated.rds')
-walks_consAmp_NSCLC <- readRDS('source_data/HLAMPwalks_consensus_ampSum_NSD3_NSCLC_10kb_binned_interpolated.rds')
+cn_consAmp_BRCA <- readRDS(paste0('source_data/CN_profile_extendedCohort_',xG,'_BRCA_10kb_binned.rds'))
+cn_consAmp_NSCLC <- readRDS(paste0('source_data/CN_profile_extendedCohort_',xG,'_NSCLC_10kb_binned.rds'))
+walks_consAmp_BRCA <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned.rds'))
+walks_consAmp_NSCLC <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned.rds'))
 CN_B <- as.data.frame(cn_consAmp_BRCA)
 CN_L <- as.data.frame(cn_consAmp_NSCLC)
 walks_B <- as.data.frame(walks_consAmp_BRCA)
@@ -48,8 +51,8 @@ chr_bounds <- CN_B_plot %>%
 
 # plot
 make_plot <- function(data, color) {
-  ggplot(data %>% filter(AmpFraction_smoothed > 0)) +
-    geom_rect(aes(xmin=start,xmax=end,ymin = 0,ymax=AmpFraction_smoothed),color=color) +
+  ggplot(data %>% filter(AmpPercent > 0)) +
+    geom_rect(aes(xmin=start,xmax=end,ymin = 0,ymax=AmpPercent),color=color) +
     geom_rect(data=chr_bounds,aes(xmin=xmin,xmax=xmax,ymin=-Inf,ymax=Inf),
 	      inherit.aes=F,fill=NA,color=NA) +
     scale_x_continuous(

@@ -6,10 +6,14 @@ library(ggplot2)
 library(gGnome)
 
 # load profiles
-cn_consAmp_BRCA <- readRDS('source_data/CN_profile_extendedCohort_CCND1_BRCA_10kb_binned.rds')
-cn_consAmp_NSCLC <- readRDS('source_data/CN_profile_extendedCohort_CCND1_NSCLC_10kb_binned.rds')
-walks_consAmp_BRCA <- readRDS('source_data/HLAMPwalks_consensus_ampSum_CCND1_BRCA_10kb_binned.rds')
-walks_consAmp_NSCLC <- readRDS('source_data/HLAMPwalks_consensus_ampSum_CCND1_NSCLC_10kb_binned.rds')
+case <- commandArgs(trailingOnly = TRUE)
+xG <- case[1] # CCND1, NSD3, EGFR
+
+# load profiles
+cn_consAmp_BRCA <- readRDS(paste0('source_data/CN_profile_extendedCohort_',xG,'_BRCA_10kb_binned.rds'))
+cn_consAmp_NSCLC <- readRDS(paste0('source_data/CN_profile_extendedCohort_',xG,'_NSCLC_10kb_binned.rds'))
+walks_consAmp_BRCA <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_BRCA_10kb_binned.rds'))
+walks_consAmp_NSCLC <- readRDS(paste0('source_data/HLAMPwalks_consensus_ampSum_',xG,'_NSCLC_10kb_binned.rds'))
 CN_B <- as.data.frame(cn_consAmp_BRCA)
 CN_L <- as.data.frame(cn_consAmp_NSCLC)
 walks_B <- as.data.frame(walks_consAmp_BRCA)
